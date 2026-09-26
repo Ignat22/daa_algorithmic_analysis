@@ -1,14 +1,3 @@
-/**
- * Singly Linked List implementation (own class, not java.util.LinkedList).
- *
- * Maintains head and tail pointers plus a size field, so add(x)
- * (append) is O(1). All index-based operations must traverse from
- * the head, so they are O(n) (or O(index) precisely).
- *
- * The same opCounter convention as DynamicArray is used: one
- * increment per node visited / compared / relinked, so the two
- * structures' instrumentation is directly comparable in benchmarks.
- */
 public class LinkedList<T> {
 
     private static class Node<T> {
@@ -39,7 +28,6 @@ public class LinkedList<T> {
         return opCounter;
     }
 
-    /** Appends x at the tail. O(1) because of the tail pointer. */
     public void add(T x) {
         Node<T> node = new Node<>(x);
         opCounter++; // one write (link)
@@ -52,11 +40,6 @@ public class LinkedList<T> {
         size++;
     }
 
-    /**
-     * Inserts x at the given index. Valid indices: [0, size].
-     * O(1) at index 0 (no traversal needed), O(index) otherwise,
-     * O(n) worst case (index == size).
-     */
     public void add(int index, T x) {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
@@ -85,10 +68,6 @@ public class LinkedList<T> {
         size++;
     }
 
-    /**
-     * Removes and returns the element at index.
-     * O(1) at index 0, O(index) otherwise, O(n) worst case.
-     */
     public T remove(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
@@ -115,7 +94,6 @@ public class LinkedList<T> {
         return removed;
     }
 
-    /** Returns the element at index. Must traverse from head: O(index), worst case O(n). */
     public T get(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
@@ -129,7 +107,6 @@ public class LinkedList<T> {
         return cur.value;
     }
 
-    /** Linear search from head. O(n) worst/average, O(1) best case. */
     public boolean contains(T x) {
         Node<T> cur = head;
         while (cur != null) {

@@ -1,20 +1,8 @@
-/**
- * Dynamic Array (resizable array) implementation.
- *
- * Backed by a plain Object[] that doubles in capacity when full.
- * Supports add(x), add(index, x), remove(index), get(index), contains(x).
- *
- * An internal operation counter tracks "primitive" operations
- * (element accesses / comparisons / shifts) so the Benchmark harness
- * can report the metrics required by the assignment without relying
- * on JIT-sensitive timing alone.
- */
 public class DynamicArray<T> {
 
     private Object[] data;
     private int size;
 
-    /** Counts element moves / comparisons / accesses performed by the last operation(s). */
     private long opCounter = 0;
 
     public DynamicArray() {
@@ -52,7 +40,6 @@ public class DynamicArray<T> {
         data = newData;
     }
 
-    /** Appends x to the end. Amortized O(1). */
     public void add(T x) {
         ensureCapacity(size + 1);
         data[size] = x;
@@ -60,10 +47,6 @@ public class DynamicArray<T> {
         opCounter++; // one write
     }
 
-    /**
-     * Inserts x at the given index, shifting subsequent elements right.
-     * Valid indices: [0, size]. O(n) in the worst/average case.
-     */
     public void add(int index, T x) {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
@@ -79,10 +62,6 @@ public class DynamicArray<T> {
         size++;
     }
 
-    /**
-     * Removes and returns the element at index, shifting subsequent
-     * elements left. Valid indices: [0, size). O(n) worst/average case.
-     */
     @SuppressWarnings("unchecked")
     public T remove(int index) {
         if (index < 0 || index >= size) {
@@ -98,7 +77,6 @@ public class DynamicArray<T> {
         return removed;
     }
 
-    /** Returns the element at index. O(1). */
     @SuppressWarnings("unchecked")
     public T get(int index) {
         if (index < 0 || index >= size) {
@@ -108,10 +86,6 @@ public class DynamicArray<T> {
         return (T) data[index];
     }
 
-    /**
-     * Linear search. O(n) worst/average case, O(1) best case.
-     * Counts one comparison per element examined.
-     */
     public boolean contains(T x) {
         for (int i = 0; i < size; i++) {
             opCounter++; // one comparison

@@ -3,20 +3,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Random;
 
-/**
- * Benchmark harness for Assignment 2.
- *
- * Runs the four required workloads over n = 100, 1000, 10000, 100000,
- * each experiment 5 times (average reported), using System.nanoTime()
- * and a fixed seed (Random(42)) so runs are reproducible. Results are
- * written as CSV files under results/tables/, matching what the
- * plotting script (results/plots/plot_results.py) expects.
- *
- * Run from the project root after compiling:
- *   javac -d out src/*.java
- *   java -cp out Benchmark
- */
-public class Benchmark {
+ public class Benchmark {
 
     static final int[] N_VALUES = {100, 1_000, 10_000, 100_000};
     static final int REPEATS = 5;

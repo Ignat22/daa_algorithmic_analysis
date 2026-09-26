@@ -1,16 +1,6 @@
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Random;
-
-/**
- * Lightweight, dependency-free correctness test suite.
- * No JUnit is used so the project builds with `javac` alone.
- *
- * Covers: empty structure, one element, multiple elements, duplicate
- * values, boundary indices, large inputs, invalid indices, heap
- * property after insert/extract, non-decreasing extraction order,
- * and cross-validation against java.util.ArrayList / PriorityQueue.
- */
 public class Tests {
 
     private static int passed = 0;
